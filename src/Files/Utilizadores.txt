@@ -1,0 +1,3 @@
+121221;edson;maio1996;Administrador_Sistema;
+324344;evair;123456;seguranca;
+1221;janito;654321;Administrativo;
