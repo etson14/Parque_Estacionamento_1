@@ -1,3 +1,4 @@
-121221;edson;maio1996;Administrador_Sistema;
-324344;evair;123456;seguranca;
-1221;janito;654321;Administrativo;
+121221;edson;maio1996;Admin_Sistema;
+324344;evair;123456;Administrativo;
+1221;janito;654321;Seguranca;
+1313;pedro;123456;Seguranca;

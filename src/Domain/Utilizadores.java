@@ -139,7 +139,7 @@ public class Utilizadores {
        System.out.print("\t\tEscolha uma opção: ");
        int op=ler.nextInt();
        switch(op){
-           case 1:util.tipo="seguranca" ;
+           case 1:util.tipo="Seguranca" ;
                    break;
            case 2:util.tipo="Administrativo";
                     break;
@@ -256,5 +256,18 @@ public class Utilizadores {
        
        return list_util;
    }
+   
+   public Utilizadores testa_util(String nome,String senha) throws IOException{
+       List<Utilizadores> list_util=LerFicheiro();
+       
+       for(Utilizadores u: list_util){
+           if(u.Nome.equals(nome) && u.senha.equals(senha)){
+        
+           return u;
+       }
+       
+       }
 
+       return null;
+    }
 }
