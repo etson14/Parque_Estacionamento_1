@@ -28,11 +28,12 @@ public class Seguranca {
         System.out.println("\t\t\t\t     *******************************************************");
         System.out.println("\t\t\t\t     *******************************************************");
         System.out.println("\t\t\t\t     **                                                   **");
+        System.out.println("\t\t\t\t     **                       MENU                        **");
         System.out.println("\t\t\t\t     **                                                   **");
-        System.out.println("\t\t\t\t     **      1 -> Listar Veiculos                         **");
-        System.out.println("\t\t\t\t     **      2 -> Autorizar acesso ao veiculos especiais  **");
+        System.out.println("\t\t\t\t     **    1 -> Listar Veiculos                           **");
+        System.out.println("\t\t\t\t     **    2 -> Autorizar acesso ao veiculos especiais    **");
         System.out.println("\t\t\t\t     **                                                   **");
-        System.out.println("\t\t\t\t     **      3 -> Logout                                  **");
+        System.out.println("\t\t\t\t     **   3 -> Logout                                     **");
         System.out.println("\t\t\t\t     **                                                   **");
         System.out.println("\t\t\t\t     *******************************************************");
         System.out.println("\t\t\t\t     *******************************************************");    
@@ -52,23 +53,7 @@ public class Seguranca {
          }
              
          }
-         
-         
-         
-         
+    
     }
 
-   
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

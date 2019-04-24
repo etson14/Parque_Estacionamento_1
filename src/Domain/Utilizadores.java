@@ -49,6 +49,7 @@ public class Utilizadores {
         System.out.println("\t\t\t\t     *******************************************************");
         System.out.println("\t\t\t\t     *******************************************************");
         System.out.println("\t\t\t\t     **                                                   **");
+        System.out.println("\t\t\t\t     **                       MENU                        **");
         System.out.println("\t\t\t\t     **                                                   **");
         System.out.println("\t\t\t\t     **      1 -> Criar conta e perfis de acesso          **");
         System.out.println("\t\t\t\t     **      2 -> Cancelar contas de acesso               **");
