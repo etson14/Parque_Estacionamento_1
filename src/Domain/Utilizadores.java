@@ -190,30 +190,34 @@ public class Utilizadores {
        int op;
        List<Utilizadores> list_util=LerFicheiro();
        Utilizadores util=new Utilizadores();
+       
        final String cod_util;
        
        System.out.println("\n");
        System.out.print("\t\tEntra com o codigo de utilizador que desejas cancelar a sua conta:");
         cod_util=ler.nextLine();
-       
-       for(Utilizadores u:list_util){
+       Utilizadores test_util=util.testa_u(cod_util);
+        
+       if(test_util!=null){
+           for(Utilizadores u:list_util){
            if(u.ID_Utilizador.equals(cod_util)){
                list_util.remove(u);
                SalvarFicheiro(list_util);
-               System.out.println("\t\t\nConta cancelado com sucesso!");
+               System.out.println("\t\tConta cancelado com sucesso!\n");
+               util.Listar();
+               
            }
-           else{
-               System.err.println("\t\tEste utilizador nao existe!");
-           }
+           
+        }
+       }else{
+               
+            System.err.println("\t\tEste usuario nao existe!");
+           
        }
        
+       
        menu_Admin_Sist();
-       
-       
-       
-       
-       
-       
+      
    }
 
 
@@ -228,9 +232,10 @@ public class Utilizadores {
            bw.write(u.Nome+";");
            bw.write(u.senha+";");
            bw.write(u.tipo+";\n");
+          
        }
         bw.close();
-        
+       
         
    }
    
@@ -264,10 +269,22 @@ public class Utilizadores {
            if(u.Nome.equals(nome) && u.senha.equals(senha)){
         
            return u;
-       }
+            }
        
        }
 
        return null;
     }
+   
+   public Utilizadores testa_u(String ID) throws IOException{
+       List<Utilizadores> list_util=LerFicheiro();
+       
+       for(Utilizadores u:list_util){
+           if(u.ID_Utilizador.equals(ID)){
+               return u;
+           }
+       }
+       
+       return null;
+   }
 }

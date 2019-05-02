@@ -1,4 +1,2 @@
 121221;edson;maio1996;Admin_Sistema;
-324344;evair;123456;Administrativo;
-1221;janito;654321;Seguranca;
-1313;pedro;123456;Seguranca;
+1212;evair;123456;Seguranca;

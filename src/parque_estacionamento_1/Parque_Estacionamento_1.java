@@ -11,10 +11,11 @@ public class Parque_Estacionamento_1 {
 
     public static void main(String[] args) throws IOException {
         Utilizadores u = new Utilizadores();
+        
 
         menuPrincipal();
 
-        //menu_Admin_Sist();
+        
     }
 
     public static void menuPrincipal() throws IOException {
@@ -35,21 +36,23 @@ public class Parque_Estacionamento_1 {
     }
 
     public static void Login() throws IOException {
+        
+        String nomeUsuario,senhaUsuario;
+        
 
         System.out.println("\t\t\t\t\t                     Login ");
         System.out.println("\t\t\t\t\t     ");
         Scanner ler = new Scanner(System.in);
 
         System.out.print("\t\tNome Usuario:");
-        String nomeUsuario = ler.nextLine();
+         nomeUsuario = ler.nextLine();
 
         System.out.print("\t\tSenha:");
-        String senhaUsuario = ler.nextLine();
+         senhaUsuario = ler.nextLine();
 
         Utilizadores utilLog = new Utilizadores();
         Utilizadores u=utilLog.testa_util(nomeUsuario, senhaUsuario);
 
-        
             if (u!=null) {
                 if (u.tipo.equals("Seguranca")) {
                     menu_Seg();
@@ -58,11 +61,22 @@ public class Parque_Estacionamento_1 {
                 }else if(u.tipo.equals("Admin_Sistema")){
                     menu_Admin_Sist();
                 }
+                
             } else {
+               
                 System.err.println("\t\tEste usuario nao existe!");
-            }
+                Login();
+               
+              }
+                
+            
 
         
+    }
+    
+    public static int contar(){
+        int i=0;
+        return i++;
     }
 
     public static void menu_Administrativo() throws IOException {
