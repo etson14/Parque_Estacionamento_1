@@ -210,12 +210,12 @@ public class Condutor extends Pessoa{
             if(list_cond.get(i).getId_Condutor()==id_c){
                 list_cond.remove(i);
                 SalvarFicheiro(list_cond);
-                System.out.println("\t\\n\ntCondutor eliminado com sucesso");
+                System.out.println("\n\n\t\ttCondutor eliminado com sucesso");
                 Listar_Condutor();
             }
         }
         }else{
-                System.err.println("\nEste condutor nao existe");
+                System.err.println("\n\t\tEste condutor nao existe");
                 }
             
         

@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import static parque_estacionamento_1.Parque_Estacionamento_1.menuPrincipal;
+
+import static parque_estacionamento_1.Parque_Estacionamento_1.menu_Admin_Sist;
 
 
 public class Utilizadores {
@@ -44,60 +45,9 @@ public class Utilizadores {
     
       File file_util=new File("C:\\Users\\Vares\\Documents\\NetBeansProjects\\Parque_Estacionamento_1\\src\\Files\\Utilizadores.txt");
 
-   public static void menu_Admin_Sist() throws IOException{
-       
-       int op=0;
-       
-       
-       while(op!=3){
-       
-        System.out.println("\n\n");
-        System.out.println("\t\t\t\t     *******************************************************");
-        System.out.println("\t\t\t\t     *******************************************************");
-        System.out.println("\t\t\t\t     **                                                   **");
-        System.out.println("\t\t\t\t     ** BENVINDO SISTEMA DE GESTAO PARQUE ESTACIONAMENTO  **");
-        System.out.println("\t\t\t\t     **                                                   **");
-        System.out.println("\t\t\t\t     *******************************************************");
-        System.out.println("\t\t\t\t     *******************************************************");
-        System.out.println("\t\t\t\t     **                                                   **");
-        System.out.println("\t\t\t\t     **                       MENU                        **");
-        System.out.println("\t\t\t\t     **                                                   **");
-        System.out.println("\t\t\t\t     **      1 -> Criar conta e perfis de acesso          **");
-        System.out.println("\t\t\t\t     **      2 -> Cancelar contas de acesso               **");
-        System.out.println("\t\t\t\t     **                                                   **");
-        System.out.println("\t\t\t\t     **      3 -> Logout                                  **");
-        System.out.println("\t\t\t\t     **                                                   **");
-        System.out.println("\t\t\t\t     *******************************************************");
-        System.out.println("\t\t\t\t     *******************************************************");    
-        System.out.print("\t\tEscolha uma opcao:");
-        op=ler.nextInt();
-         
-        
-        Utilizadores u=new Utilizadores();
-        
-        
-         switch(op){
-             case 1:System.out.println("\n");
-             u.Listar();
-             u.adicionar();
-             u.Listar();
-             
-                 break;
-             case 2:System.out.println("\n");
-             u.Listar();
-             u.cancelar_conta();
-             
-                 break;
-             
-             case 3:System.out.println("\n");
-                 menuPrincipal();
-                 break;
-             default:System.err.println("Opcao invalido!");
-                break;
-         }
-       
-        }
-   }
+   
+   
+   
    
    
    public Utilizadores adicionar() throws IOException{
@@ -105,24 +55,10 @@ public class Utilizadores {
        Utilizadores util=new Utilizadores();
        List<Utilizadores> list_util = LerFicheiro();
        
-       //System.out.print("\t\tEntre com o codigo do Utilizador:");
+       
        util.ID_Utilizador=list_util.size()+1;
        
-       /*
-       while(!(util.ID_Utilizador.matches("[0-9]{4}"))){
-       System.err.println("\t\tO codigo deve ser numerico!");
-       System.out.print("\t\tEntre novamente com o codigo do Utilizador:");
-       util.ID_Utilizador=ler.nextLine();
-       }
        
-       for(Utilizadores u:list_util){
-           while(util.ID_Utilizador.equals(u.ID_Utilizador)){
-               System.err.println("\t\tJa exixte um usuario com este codigo!");
-               System.out.print("\t\tEntre novamente com o codigo do Utilizador:");
-               util.ID_Utilizador=ler.nextLine();
-           }
-       }
-       */
        ler.nextLine();
        System.out.print("\t\tEntre com o nome:");
        util.Nome=ler.nextLine();
@@ -168,18 +104,18 @@ public class Utilizadores {
        
        
    }
-   private  void Listar() throws IOException{
+   public  void Listar() throws IOException{
        List<Utilizadores> list_util =LerFicheiro();
        System.out.println("\t\t     Codigo         |Nome Completo           |Nome Utilizador             |Senha            |Tipo");
        
        list_util.forEach((u) -> {
-           System.out.println("\t\t     "+u.ID_Utilizador+"                 "+u.Nome+"                  "+u.Nome_util+"                  "+u.senha+"             "+u.tipo);
+           System.out.println("\t\t     "+u.ID_Utilizador+"               "+u.Nome+"         "+u.Nome_util+"                      "+u.senha+"            "+u.tipo);
         });
            
        
    }
    
-   private  void cancelar_conta() throws IOException{
+   public  void cancelar_conta() throws IOException{
        
        
        List<Utilizadores> list_util=LerFicheiro();
@@ -284,4 +220,6 @@ public class Utilizadores {
        
        return null;
    }
+   
+  
 }
