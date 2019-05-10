@@ -14,10 +14,21 @@ import static parque_estacionamento_1.Parque_Estacionamento_1.menuPrincipal;
 
 
 public class Utilizadores {
-    public String ID_Utilizador;
-    public String Nome;
-    public String senha;
-    public String tipo;
+    private int ID_Utilizador;
+    private String Nome;
+    private String Nome_util;
+    private String senha;
+    private String tipo;
+    
+    public static Scanner ler=new Scanner (System.in);
+    
+    public  int getID_Utilizador(){
+        return this.ID_Utilizador;
+    }
+    
+    public void setID_Utilizador(int ID_Utilizador){
+        this.ID_Utilizador=ID_Utilizador;
+    }
 
     public  String getTipo(){
         return this.tipo;
@@ -29,12 +40,12 @@ public class Utilizadores {
     
    
     int op;
-    Scanner ler=new Scanner (System.in);
+    
     
       File file_util=new File("C:\\Users\\Vares\\Documents\\NetBeansProjects\\Parque_Estacionamento_1\\src\\Files\\Utilizadores.txt");
 
    public static void menu_Admin_Sist() throws IOException{
-       Scanner ler=new Scanner (System.in);
+       
        int op=0;
        
        
@@ -59,16 +70,17 @@ public class Utilizadores {
         System.out.println("\t\t\t\t     *******************************************************");
         System.out.println("\t\t\t\t     *******************************************************");    
         System.out.print("\t\tEscolha uma opcao:");
-       
-         
         op=ler.nextInt();
+         
+        
         Utilizadores u=new Utilizadores();
+        
+        
          switch(op){
              case 1:System.out.println("\n");
              u.Listar();
              u.adicionar();
              u.Listar();
-             
              
                  break;
              case 2:System.out.println("\n");
@@ -93,10 +105,10 @@ public class Utilizadores {
        Utilizadores util=new Utilizadores();
        List<Utilizadores> list_util = LerFicheiro();
        
+       //System.out.print("\t\tEntre com o codigo do Utilizador:");
+       util.ID_Utilizador=list_util.size()+1;
        
-       System.out.print("\t\tEntre com o codigo do Utilizador:");
-       util.ID_Utilizador=ler.nextLine();
-       
+       /*
        while(!(util.ID_Utilizador.matches("[0-9]{4}"))){
        System.err.println("\t\tO codigo deve ser numerico!");
        System.out.print("\t\tEntre novamente com o codigo do Utilizador:");
@@ -110,13 +122,16 @@ public class Utilizadores {
                util.ID_Utilizador=ler.nextLine();
            }
        }
-       
-       
-       System.out.print("\t\tEntre com o nome do Utilizador:");
+       */
+       ler.nextLine();
+       System.out.print("\t\tEntre com o nome:");
        util.Nome=ler.nextLine();
        
+       System.out.print("\t\tEntre com o nome do utilizador:");
+       util.Nome_util=ler.nextLine();
+       
        for(Utilizadores u:list_util){
-           while(util.Nome.equals(u.Nome)){
+           while(util.Nome_util.equals(u.Nome_util)){
                System.err.println("\t\tEste usuario ja existe!");
                System.out.print("\t\tEntre novamente com o nome do Utilizador:");
                util.Nome=ler.nextLine();
@@ -153,54 +168,34 @@ public class Utilizadores {
        
        
    }
-   /*
-   public void sub_menuUtil() throws IOException{
-       System.out.println("\n");
-        
-       System.out.println("\t\t 1 -> Criar novamente");
-       System.out.println("\t\t 2 -> Voltar\n");
-       System.out.println("\t\t Escolha uma opcao:");
-       int op=ler.nextInt();
-       
-       switch(op){
-           case 1:adicionar();
-                break;
-           case 2:menu_Admin_Sist();
-                break;
-           default:System.err.println("Opcao invalido"); 
-            break;
-           
-               
-       }
-   }*/
-   
    private  void Listar() throws IOException{
        List<Utilizadores> list_util =LerFicheiro();
-       System.out.println("\t\t\t\t     Codigo         |Nome           |Senha             |Tipo            ");
+       System.out.println("\t\t     Codigo         |Nome Completo           |Nome Utilizador             |Senha            |Tipo");
        
-       for(Utilizadores util:list_util){
-           System.out.println("\t\t\t\t     "+util.ID_Utilizador+"           "+util.Nome+"           "+util.senha+"           "+util.tipo+"          ");
-       }
+       list_util.forEach((u) -> {
+           System.out.println("\t\t     "+u.ID_Utilizador+"                 "+u.Nome+"                  "+u.Nome_util+"                  "+u.senha+"             "+u.tipo);
+        });
            
        
    }
    
    private  void cancelar_conta() throws IOException{
        
-       int op;
+       
        List<Utilizadores> list_util=LerFicheiro();
        Utilizadores util=new Utilizadores();
        
-       final String cod_util;
+       final int cod_util;
        
        System.out.println("\n");
+       ler.nextLine();
        System.out.print("\t\tEntra com o codigo de utilizador que desejas cancelar a sua conta:");
-        cod_util=ler.nextLine();
+        cod_util=ler.nextInt();
        Utilizadores test_util=util.testa_u(cod_util);
         
        if(test_util!=null){
            for(Utilizadores u:list_util){
-           if(u.ID_Utilizador.equals(cod_util)){
+           if(u.ID_Utilizador==cod_util){
                list_util.remove(u);
                SalvarFicheiro(list_util);
                System.out.println("\t\tConta cancelado com sucesso!\n");
@@ -211,7 +206,7 @@ public class Utilizadores {
         }
        }else{
                
-            System.err.println("\t\tEste usuario nao existe!");
+            System.err.println("\t\tEste utilizador nao existe!");
            
        }
        
@@ -230,6 +225,7 @@ public class Utilizadores {
            
            bw.write(u.ID_Utilizador+";");
            bw.write(u.Nome+";");
+           bw.write(u.Nome_util+";");
            bw.write(u.senha+";");
            bw.write(u.tipo+";\n");
           
@@ -250,10 +246,11 @@ public class Utilizadores {
            Utilizadores util=new Utilizadores();
            String[] atributos=dados.split(";");
            
-           util.ID_Utilizador=atributos[0];
+           util.ID_Utilizador=Integer.parseInt(atributos[0]);
            util.Nome=atributos[1];
-           util.senha=atributos[2];
-           util.tipo=atributos[3];
+           util.Nome_util=atributos[2];
+           util.senha=atributos[3];
+           util.tipo=atributos[4];
            
            
            list_util.add(util);
@@ -266,7 +263,7 @@ public class Utilizadores {
        List<Utilizadores> list_util=LerFicheiro();
        
        for(Utilizadores u: list_util){
-           if(u.Nome.equals(nome) && u.senha.equals(senha)){
+           if(u.Nome_util.equals(nome) && u.senha.equals(senha)){
         
            return u;
             }
@@ -276,11 +273,11 @@ public class Utilizadores {
        return null;
     }
    
-   public Utilizadores testa_u(String ID) throws IOException{
+   public Utilizadores testa_u(int ID) throws IOException{
        List<Utilizadores> list_util=LerFicheiro();
        
        for(Utilizadores u:list_util){
-           if(u.ID_Utilizador.equals(ID)){
+           if(u.ID_Utilizador==ID){
                return u;
            }
        }
