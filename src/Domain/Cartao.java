@@ -1,7 +1,7 @@
 
 package Domain;
 
-import static Domain.Condutor.id_Cond;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,7 +9,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -49,14 +52,23 @@ public class Cartao {
     
     public static int id_Cart;
     
+    public static String get_Data(){
+        DateFormat data_f=new SimpleDateFormat("yyyyMMdd");
+        Date data=new Date();
+        return data_f.format(data);
+    }
+    
     public Cartao add_Cart() throws IOException{
+        
+        String data_actual=get_Data();
         Cartao cart=new Cartao();
         List<Cartao> list_cart =LerFicheiroCart();
         
        cart.ID_Cartao=list_cart.size()+1;
        id_Cart=list_cart.size()+1;
+       cart.C_Cartao=Integer.toString(list_cart.size()+Integer.parseInt(data_actual));
        cart.E_Cartao="Ativo";
-       cart.C_Cartao=Integer.toString(list_cart.size()+100000);
+      
        
        
        list_cart.add(cart);

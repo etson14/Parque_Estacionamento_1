@@ -2,10 +2,11 @@ package parque_estacionamento_1;
 
 import Domain.Cartao;
 import Domain.Condutor;
+import Domain.Consulta;
 import Domain.Registro;
 
 import Domain.Utilizadores;
-import Domain.Veiculo;
+
 
 
 
@@ -20,8 +21,8 @@ public class Parque_Estacionamento_1 {
 
     public static void main(String[] args) throws IOException {
         
-       
-        menuPrincipal();
+    
+    menuPrincipal();
 
     }
 
@@ -38,7 +39,7 @@ public class Parque_Estacionamento_1 {
         System.out.println("\t                                                                                                              ");
         System.out.println("\t\t\t\t\t     SISTEMA DE GESTAO PARQUE ESTACIONAMENTO                                                         \n");
 
-        
+        System.out.println("\t\t\t\t\t                     Login ");
         Login();
 
     }
@@ -47,13 +48,13 @@ public class Parque_Estacionamento_1 {
 
         String nomeUsuario, senhaUsuario;
 
-        System.out.println("\t\t\t\t\t                     Login ");
+        
         System.out.println("\t\t\t\t\t     ");
       
-
+        
         System.out.print("\t\tNome Usuario:");
         nomeUsuario = ler.nextLine();
-
+        
         System.out.print("\t\tSenha:");
         senhaUsuario = ler.nextLine();
 
@@ -74,8 +75,9 @@ public class Parque_Estacionamento_1 {
             }
 
         } else {
-
+            System.out.println("\n");
             System.err.println("\t\tEste usuario nao existe!");
+            System.err.println("\t\tTente novamente!");
             Login();
 
         }
@@ -256,7 +258,7 @@ public class Parque_Estacionamento_1 {
     }
     
     public static void menu_Consultas() throws IOException{
-        
+        Consulta c=new Consulta();
         String opc="1";
         
         
@@ -293,7 +295,8 @@ public class Parque_Estacionamento_1 {
             switch(opc){
                 case "0":menu_Administrativo();
                     break;
-                case "1":
+                case "1":System.out.println("\n");
+                        c.consulta_1();
                     break;
                 case "2":
                     break;

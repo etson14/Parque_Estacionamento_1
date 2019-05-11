@@ -129,8 +129,7 @@ public class Condutor extends Pessoa{
         
        
     }
-    
-    
+   
     public void SalvarFicheiro(List<Condutor> list_cond) throws IOException{
         
         FileWriter fw=new FileWriter(file);
@@ -229,22 +228,29 @@ public class Condutor extends Pessoa{
         List <Condutor> list_cond =LerFicheiro();
         Condutor cond=new Condutor();
        
-         
          Listar_Condutor();
          
          System.out.print("\t\t\nDigite o codigo do condutor que desejas actualizar:");
          final int id_c=ler.nextInt();
          
-          Condutor c=cond.test_cond(id_c);
+         Condutor c=cond.test_cond(id_c);
           
           
          if(c!=null){
           
          for(int i=0;i<list_cond.size();i++){
             if(list_cond.get(i).getId_Condutor()==id_c){
-            list_cond.remove(i);
-                 
+                
             
+            cond.id_Utilizador=list_cond.get(i).getId_Utilizador();
+            cond.n_cartao=list_cond.get(i).getN_cartao();
+            cond.Id_Condutor=list_cond.get(i).getId_Condutor();    
+            
+            list_cond.remove(i);
+            
+           
+            
+            ler.nextLine();
             System.out.print("\t\tNome:");
             cond.nome=ler.nextLine();
         
@@ -295,10 +301,10 @@ public class Condutor extends Pessoa{
             default:System.err.println("\t\tOpcao Invalido");    
                 }
             
+           
             
             
-            
-            list_cond.add(i, c);
+            list_cond.add(i,cond);
             SalvarFicheiro(list_cond);
             
             

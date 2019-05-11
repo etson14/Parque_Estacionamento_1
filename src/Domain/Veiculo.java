@@ -101,7 +101,7 @@ public class Veiculo {
             String atributo[]=dados.split(";");
             
             
-            v.Id_Condutor=Integer.parseInt(atributo[0]);
+            v.Id_veiculo=Integer.parseInt(atributo[0]);
             v.N_Matricula=atributo[1];
             v.marca=atributo[2];
             v.modelo=atributo[3];
@@ -118,9 +118,9 @@ public class Veiculo {
     public void listar_veiculo() throws IOException{
         List<Veiculo> lista_veiculo=LerFicheiro();
         
-        System.out.println("\t\tId_Veiculo         |N Matricula         |Marca         |Modelo         |Cor         |Tipo         |Id Condutor");
+        System.out.println("\t\tId_Veiculo  |N Matricula        |Marca         |Modelo         |Cor         |Tipo         |Id Condutor");
         lista_veiculo.forEach(v->{
-        System.out.println("\t\t"+v.Id_veiculo+"                   "+v.N_Matricula+"             "+v.marca+"           "+v.modelo+"           "+v.cor+"         "+v.tipo+"         "+v.Id_Condutor);
+        System.out.println("\t\t"+v.Id_veiculo+"    "+v.N_Matricula+"             "+v.marca+"           "+v.modelo+"           "+v.cor+"         "+v.tipo+"         "+v.Id_Condutor);
         });
     }
     

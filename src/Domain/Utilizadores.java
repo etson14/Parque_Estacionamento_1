@@ -77,6 +77,8 @@ public class Utilizadores {
        System.out.print("\t\tEntre com a senha (6-12 caracteres):");
        util.senha=ler.nextLine();
        
+       //System.out.println("[0-9|A-Z|a-z]{15}[@]{1}[a-z]{12}[.com|.cv]");
+       
        while(!(util.senha.matches("[0-9|A-Z|a-z]{6,12}"))){
            System.err.println("\t\tSenha Invalida");
            System.out.print("\t\tEntre novamente com a senha (6-12 caracteres):");

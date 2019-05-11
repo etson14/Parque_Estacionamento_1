@@ -169,7 +169,7 @@ public class Registro {
         List<Registro> list_reg=LerFicheiro();
         List<Veiculo> lista_veiculo=veiculo.LerFicheiro();
        
-          /*   
+        /*   
         System.out.println("\t\t\t\tId Veiculo         |Data & Hora Entrada             |Data & Hora Saida\n");
         for(Registro r:list_reg){
             if(r.id_util==id_s ){
@@ -179,17 +179,17 @@ public class Registro {
         System.out.println("\n\n");
         */
           
-        System.out.println("\t\t\t\tId Veiculo         |Data & Hora Entrada             |Data & Hora Saida\n");
+        System.out.println("N Matricula      |Marca             |Modelo             |Cor             |Tipo             |Data & Hora Entrada             |Data & Hora Saida");
         for(Registro r:list_reg){
           if(r.id_util==id_s ){
           for(Veiculo v:lista_veiculo){
               if(v.getId_veiculo()==r.id_Veiculo){
-                System.out.println("\t\t\t\t"+r.id_Veiculo+"                   "+v.getId_veiculo()+"                   "+v.getN_Matricula()+"             "+v.getMarca()+"           "+v.getModelo()+"           "+v.getCor()+"         "+v.getTipo()+"         "+r.data_entrada+" "+r.hora_saida+"              "+r.data_entrada+" "+r.hora_saida+"");     
+        System.out.println( v.getN_Matricula()+"          "+v.getMarca()+"             "+v.getModelo()+"               "+v.getCor()+"            "+v.getTipo()+"            "+r.data_entrada+" "+r.hora_saida+"              "+r.data_entrada+" "+r.hora_saida);     
               }
           }
         }
-        System.out.println("\n\n");
-        
+       
+       
     }
 
     
