@@ -15,6 +15,8 @@ import static parque_estacionamento_1.Parque_Estacionamento_1.menu_Admin_Sist;
 
 
 public class Utilizadores {
+    
+    //Atributos dos utilizadores
     private int ID_Utilizador;
     private String Nome;
     private String Nome_util;
@@ -22,6 +24,33 @@ public class Utilizadores {
     private String tipo;
     
     public static Scanner ler=new Scanner (System.in);
+    
+    //Metodos acessores & metodos modificadores 
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String Nome) {
+        this.Nome = Nome;
+    }
+
+    public String getNome_util() {
+        return Nome_util;
+    }
+
+    public void setNome_util(String Nome_util) {
+        this.Nome_util = Nome_util;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
     
     public  int getID_Utilizador(){
         return this.ID_Utilizador;
@@ -42,14 +71,14 @@ public class Utilizadores {
    
     int op;
     
-    
+      
       File file_util=new File("C:\\Users\\Vares\\Documents\\NetBeansProjects\\Parque_Estacionamento_1\\src\\Files\\Utilizadores.txt");
 
    
    
    
    
-   
+   //Metodo adicionar utilizadores
    public Utilizadores adicionar() throws IOException{
        System.out.println("\n");
        Utilizadores util=new Utilizadores();
@@ -106,6 +135,9 @@ public class Utilizadores {
        
        
    }
+   
+   
+   //Metodos que lista os utilizadores
    public  void Listar() throws IOException{
        List<Utilizadores> list_util =LerFicheiro();
        System.out.println("\t\t     Codigo         |Nome Completo           |Nome Utilizador             |Senha            |Tipo");
@@ -117,6 +149,7 @@ public class Utilizadores {
        
    }
    
+   //Metodo cancelar conta
    public  void cancelar_conta() throws IOException{
        
        
@@ -154,7 +187,7 @@ public class Utilizadores {
    }
 
 
-   
+   //Metodo salvar utilizadores no ficheiro
    public void SalvarFicheiro(List<Utilizadores> util) throws IOException{
        FileWriter fw=new FileWriter(file_util);
        BufferedWriter bw=new BufferedWriter(fw);
@@ -173,6 +206,7 @@ public class Utilizadores {
         
    }
    
+   //Metodo que carrega os utilizadores do ficheiro
    public List<Utilizadores> LerFicheiro() throws FileNotFoundException, IOException{
        List<Utilizadores> list_util=new ArrayList<> ();
        FileReader fr=new FileReader(file_util);
@@ -197,6 +231,8 @@ public class Utilizadores {
        return list_util;
    }
    
+   //Metodo que recebe como parametro nome & senha e verifica se esse utilizador existe
+   //caso existir retorno esse utilizador caso nao retorna nulo
    public Utilizadores testa_util(String nome,String senha) throws IOException{
        List<Utilizadores> list_util=LerFicheiro();
        
@@ -211,6 +247,8 @@ public class Utilizadores {
        return null;
     }
    
+   //Metodo que recebe como parametro o id e verifica se existe utilizador com este id
+   //caso existir retorno esse utilizador caso nao retorna nulo
    public Utilizadores testa_u(int ID) throws IOException{
        List<Utilizadores> list_util=LerFicheiro();
        

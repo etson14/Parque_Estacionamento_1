@@ -23,6 +23,16 @@ public class Condutor extends Pessoa{
     private int n_cartao;
     private int id_Utilizador;
 
+    public String getTipo_condutor() {
+        return tipo_condutor;
+    }
+
+    public void setTipo_condutor(String tipo_condutor) {
+        this.tipo_condutor = tipo_condutor;
+    }
+    
+    
+
     public int getN_cartao() {
         return n_cartao;
     }

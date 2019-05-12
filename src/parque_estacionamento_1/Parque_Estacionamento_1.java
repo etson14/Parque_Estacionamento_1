@@ -281,9 +281,6 @@ public class Parque_Estacionamento_1 {
             System.out.println("\t\t\t\t     **                 5  ->  Consulta 5                 **");
             System.out.println("\t\t\t\t     **                 6  ->  Consulta 6                 **");
             System.out.println("\t\t\t\t     **                 7  ->  Consulta 7                 **");
-            System.out.println("\t\t\t\t     **                 8  ->  Consulta 8                 **");
-            System.out.println("\t\t\t\t     **                 9  ->  Consulta 9                 **");
-            System.out.println("\t\t\t\t     **                 10 ->  Consulta 10                **");
             System.out.println("\t\t\t\t     **                                                   **");
             System.out.println("\t\t\t\t     **                 0 ->Voltar                        **");
             System.out.println("\t\t\t\t     **                                                   **");
@@ -297,25 +294,31 @@ public class Parque_Estacionamento_1 {
                     break;
                 case "1":System.out.println("\n");
                         c.consulta_1();
+                         System.out.println("\n");
                     break;
-                case "2":
+                case "2":System.out.println("\n");
+                        c.consulta_2();
+                        System.out.println("\n");
                     break;
-                case "3":
+                case "3":System.out.println("\n");
+                        c.consulta_3();
+                        System.out.println("\n");
                     break;
-                case "4":
+                case "4":System.out.println("\n");
+                        c.consulta_4();
+                        System.out.println("\n");
                     break;
-                case "5":
+                case "5":System.out.println("\n");
+                        c.consulta_5();
+                        System.out.println("\n");
                     break;
                 case "6":
                     break;
-                case "7":
+                case "7":System.out.println("\n");
+                        c.consulta_7();
+                        System.out.println("\n");
                     break;
-                case "8":
-                    break;
-                case "9":
-                    break;
-                case "10":
-                    break;
+               
             }
         }
     }
