@@ -88,9 +88,10 @@ public class Utilizadores {
        util.ID_Utilizador=list_util.size()+1;
        
        
-       ler.nextLine();
+      
        System.out.print("\t\tEntre com o nome:");
        util.Nome=ler.nextLine();
+       
        
        System.out.print("\t\tEntre com o nome do utilizador:");
        util.Nome_util=ler.nextLine();
@@ -130,6 +131,7 @@ public class Utilizadores {
        
        list_util.add(util);
        SalvarFicheiro(list_util);
+       System.out.println("\t\tConta criado com sucesso");
        return util;
        
        
@@ -140,10 +142,10 @@ public class Utilizadores {
    //Metodos que lista os utilizadores
    public  void Listar() throws IOException{
        List<Utilizadores> list_util =LerFicheiro();
-       System.out.println("\t\t     Codigo         |Nome Completo           |Nome Utilizador             |Senha            |Tipo");
+       System.out.println("\t\tCodigo         |Nome Completo           |Nome Utilizador             |Senha            |Tipo");
        
        list_util.forEach((u) -> {
-           System.out.println("\t\t     "+u.ID_Utilizador+"               "+u.Nome+"         "+u.Nome_util+"                      "+u.senha+"            "+u.tipo);
+           System.out.println("\t\t"+u.ID_Utilizador+"               "+u.Nome+"         "+u.Nome_util+"                      "+u.senha+"            "+u.tipo);
         });
            
        
@@ -159,19 +161,18 @@ public class Utilizadores {
        final int cod_util;
        
        System.out.println("\n");
-       ler.nextLine();
+       
        System.out.print("\t\tEntra com o codigo de utilizador que desejas cancelar a sua conta:");
         cod_util=ler.nextInt();
        Utilizadores test_util=util.testa_u(cod_util);
         
        if(test_util!=null){
-           for(Utilizadores u:list_util){
-           if(u.ID_Utilizador==cod_util){
-               list_util.remove(u);
+           for(int i=0;i<list_util.size();i++){
+           if(list_util.get(i).ID_Utilizador==cod_util){
+               list_util.remove(i);
                SalvarFicheiro(list_util);
-               System.out.println("\t\tConta cancelado com sucesso!\n");
                util.Listar();
-               
+               System.out.println("\n\t\tConta cancelado com sucesso!\n");
            }
            
         }

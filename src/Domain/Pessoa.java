@@ -15,9 +15,10 @@ public abstract class Pessoa {
     
     public int idPessoa;
     public String nome;
+    public String apelido;
     public LocalDate dataNascimento;
-    public String nif;
-    public String bi;
+    public int nif;
+    public int bi;
     public String sexo;
     public String telefone;
     public String email;

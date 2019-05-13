@@ -60,6 +60,10 @@ public class Cartao {
     
     public Cartao add_Cart() throws IOException{
         
+        if(!(file.exists())){
+            file.createNewFile();
+        }
+        
         String data_actual=get_Data();
         Cartao cart=new Cartao();
         List<Cartao> list_cart =LerFicheiroCart();
@@ -86,7 +90,7 @@ public class Cartao {
         for(Cartao ca: list_cart){
             bw.write(ca.ID_Cartao+";");
             bw.write(ca.C_Cartao+";");
-            bw.write(ca.E_Cartao+";");
+            bw.write(ca.E_Cartao+";\n");
            
         }
             bw.close();
