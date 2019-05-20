@@ -1,4 +1,1 @@
-1;ST-57-PN;Fiat;  Punto;Azul ;Normal;1;
-2;ST-20-SE;Toyota;RAV4 ;Azul ;Normal;2;
-3;ST-88-AT;Chevro;RS   ;Preto;Normal;2;
-4;ST-00-Am;Toyota;Dyna;Preto;Especial;0;
+1;ST-12-ES;TOYOTA;SCION;PRETO;Autorizado;0;1;

@@ -88,7 +88,7 @@ public class Utilizadores {
        util.ID_Utilizador=list_util.size()+1;
        
        
-      
+        ler.nextLine();
        System.out.print("\t\tEntre com o nome:");
        util.Nome=ler.nextLine();
        

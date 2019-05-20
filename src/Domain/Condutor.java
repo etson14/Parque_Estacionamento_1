@@ -20,8 +20,8 @@ public class Condutor extends Pessoa{
     
     private int Id_Condutor;
     private String tipo_condutor;
-    private int n_cartao;
-    private int id_Utilizador;
+    private String n_cartao;
+    private String id_Utilizador;
 
     public String getTipo_condutor() {
         return tipo_condutor;
@@ -33,19 +33,19 @@ public class Condutor extends Pessoa{
     
     
 
-    public int getN_cartao() {
+    public String getN_cartao() {
         return n_cartao;
     }
 
-    public void setN_cartao(int n_cartao) {
+    public void setN_cartao(String n_cartao) {
         this.n_cartao = n_cartao;
     }
 
-    public int getId_Utilizador() {
+    public String getId_Utilizador() {
         return id_Utilizador;
     }
 
-    public void setId_Utilizador(int id_Utilizador) {
+    public void setId_Utilizador(String id_Utilizador) {
         this.id_Utilizador = id_Utilizador;
     }
     
@@ -75,7 +75,7 @@ public class Condutor extends Pessoa{
         Condutor cond=new Condutor();
         List<Condutor> list_cond=LerFicheiro();
         
-        for(Condutor condutor:list_cond){
+       
             
        
         
@@ -100,32 +100,26 @@ public class Condutor extends Pessoa{
         }
         
         System.out.print("\t\tBI:");
-        cond.bi=ler.nextInt();
+        cond.bi=ler.nextLine();
         
-       while((!(Integer.toString(cond.bi).matches("[0-5]{5}"))) | cond.bi==condutor.bi){
+       while((!(cond.bi.matches("[0-9]{5}"))) ){
            System.err.println("\t\tBI invalido ou BI existente!");
            System.out.print("\t\tDigite novamente(BI):");
-           cond.bi=ler.nextInt();
+           cond.bi=ler.nextLine();
        }
         
         System.out.print("\t\tNIF:");
-        cond.nif=ler.nextInt();
-        
-        ler.nextLine();
-        System.out.print("\t\tEmail:");
-        cond.email=ler.nextLine();
+        cond.nif=ler.nextLine();
         
        
-        while(!(cond.email.matches("[0-9|A-Z|a-z]{1,15}&&[@]&&[gmail|hotmail|]&&[.com|.cv|.pt|.gov]"))){
-            System.err.println("\t\tE-mail invalido!");
-            System.out.println("\t\tDigite novamente(E-mail):");
-            cond.email=ler.nextLine();
-        }
+        System.out.print("\t\tEmail:");
+        cond.email=ler.nextLine();
+       
         
         System.out.print("\t\tTelefone:");
         cond.telefone=ler.nextLine();
         
-        while(!(cond.telefone.matches("[0-9]{7}")) | cond.telefone.equals(condutor.telefone) |cond.telefone.startsWith("0")){
+        while(!(cond.telefone.matches("[0-9]{7}")) |cond.telefone.startsWith("0")){
             System.err.println("\t\tTelefone invalido ou telefone existente!");
             System.out.print("\t\tDigite novamente:");
             cond.telefone=ler.nextLine();
@@ -176,10 +170,10 @@ public class Condutor extends Pessoa{
         
         ler.nextLine();
         
-        cond.n_cartao=id_Cart;
+        cond.n_cartao=Integer.toString(id_Cart);
         
-        cond.id_Utilizador=id_u;
-        }
+        cond.id_Utilizador=Integer.toString(id_u);
+        
         
         list_cond.add(cond);
         SalvarFicheiro(list_cond);
@@ -227,14 +221,14 @@ public class Condutor extends Pessoa{
             cond.Id_Condutor=Integer.parseInt(atributo[0]);
             cond.nome=atributo[1];
             cond.apelido=atributo[2];
-            cond.bi=Integer.parseInt(atributo[3]);
-            cond.nif=Integer.parseInt(atributo[4]);
+            cond.bi=atributo[3];
+            cond.nif=atributo[4];
             cond.email=atributo[5];
             cond.telefone=atributo[6];
             cond.sexo=atributo[7];
             cond.tipo_condutor=atributo[8];
-            cond.n_cartao=Integer.parseInt(atributo[9]);
-            cond.id_Utilizador=Integer.parseInt(atributo[10]);
+            cond.n_cartao=atributo[9];
+            cond.id_Utilizador=atributo[10];
             
             list_cond.add(cond);
             
@@ -262,6 +256,7 @@ public class Condutor extends Pessoa{
          Listar_Condutor();
          
          System.out.print("\n\t\t\t Digite o codigo do condutor que desejas eliminar:");
+         System.out.println("\n");
          final int id_c=ler.nextInt();
          
          Condutor cond=new Condutor();
@@ -274,8 +269,9 @@ public class Condutor extends Pessoa{
             if(list_cond.get(i).getId_Condutor()==id_c){
                 list_cond.remove(i);
                 SalvarFicheiro(list_cond);
-                System.out.println("\n\n\t\ttCondutor eliminado com sucesso");
                 Listar_Condutor();
+                System.out.println("\n\n\t\tCondutor eliminado com sucesso");
+                
             }
         }
         }else{
@@ -296,15 +292,15 @@ public class Condutor extends Pessoa{
          Listar_Condutor();
          
          System.out.print("\t\t\nDigite o codigo do condutor que desejas actualizar:");
-         final int id_c=ler.nextInt();
+         final String id_c=ler.nextLine();
          
-         Condutor c=cond.test_cond(id_c);
+         Condutor c=cond.test_cond(Integer.parseInt(id_c));
           
           
          if(c!=null){
           
          for(int i=0;i<list_cond.size();i++){
-            if(list_cond.get(i).getId_Condutor()==id_c){
+            if(list_cond.get(i).getId_Condutor()==Integer.parseInt(id_c)){
                 
             
             cond.id_Utilizador=list_cond.get(i).getId_Utilizador();
@@ -315,10 +311,20 @@ public class Condutor extends Pessoa{
             
            
             
-            ler.nextLine();
+            
             System.out.print("\t\tNome:");
             cond.nome=ler.nextLine();
+            
+            System.out.print("\t\tApelido:");
+            cond.apelido=ler.nextLine();
+            
+            System.out.print("\t\tBI:");
+            cond.bi=ler.nextLine();
+            
+            System.out.print("\t\tNIF:");
+            cond.nif=ler.nextLine();
         
+            
             System.out.print("\t\tEmail:");
             cond.email=ler.nextLine();
         

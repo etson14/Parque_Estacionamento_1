@@ -8,9 +8,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import static parque_estacionamento_1.Parque_Estacionamento_1.id_s;
+import static parque_estacionamento_1.Parque_Estacionamento_1.id_u;
 
 public class Registro {
     
@@ -23,6 +28,8 @@ public class Registro {
     private int id_Veiculo;
     private int id_util;
 
+    public static Scanner ler=new Scanner(System.in);
+    
     public int getId_Reg() {
         return Id_Reg;
     }
@@ -97,23 +104,135 @@ public class Registro {
 
     File file =new File("C:\\Users\\Vares\\Documents\\NetBeansProjects\\Parque_Estacionamento_1\\src\\Files\\Registro.txt");
     
+    public Registro add_registro_entrada() throws IOException{
+        Veiculo ve=new Veiculo();
+        List<Veiculo> v=ve.LerFicheiro();
+        Condutor cond=new Condutor();
+        Registro reg=new Registro();
+        List<Registro> lista_reg=LerFicheiro();
+        List<Condutor> lista_cond=cond.LerFicheiro();
+        List<Veiculo> lista_ve=ve.LerFicheiro();
+        
+        reg.Id_Reg=lista_reg.size()+1;
+        
+        reg.data_entrada=get_Data();
+        
+        reg.hora_entrada=get_Hora();
+        
+        reg.data_saida="null";
+        
+        reg.hora_saida="null";
+        
+        cond.Listar_Condutor();
+        System.out.print("\n  Selecione o condutor:");
+        reg.id_condutor=ler.nextInt();
+        
+        while(reg.id_condutor>lista_cond.size()){
+        System.err.println("  Condutor nao encontrado!");
+        System.out.print("    Selecione o condutor novamente:");
+        reg.id_condutor=ler.nextInt();
+        }
+        
+        
+        
+        System.out.println("\n");
+        ve.listar_veiculo();
+        System.out.print("  Selecione o veiculo:");
+        reg.id_Veiculo=ler.nextInt();
+        
+        while(reg.id_Veiculo>lista_ve.size()){
+        System.err.println("  Veiculo nao encontrado!");
+        System.out.print("   Selecione o veiculo novamente:");
+        reg.id_Veiculo=ler.nextInt();
+        }
+        
+        
+        reg.id_util=id_s;
+        lista_reg.add(reg);
+        SalvarFicheiro(lista_reg);
+        System.out.println("  Registro efectuado com sucesso!");
+        
+        return reg;
+    }
+    
+    public  void add_registro_saida() throws IOException{
+        Registro reg=new Registro();
+         List<Registro> lista_reg=LerFicheiro();
+         
+        System.out.println("      Id Registro        |Data & Hora Entrada        |Data & Hora Saida        |Id Condutor        |Id Veiculo        |Id Utilizador"); 
+        for(int i=0;i<lista_reg.size();i++){
+            if(lista_reg.get(i).data_saida.equals("null") && lista_reg.get(i).getHora_saida().equals("null")){
+        System.out.println("      "+lista_reg.get(i).Id_Reg+"                   "+lista_reg.get(i).data_entrada+" "+lista_reg.get(i).hora_entrada+"         "+lista_reg.get(i).data_saida+" "+lista_reg.get(i).hora_saida+"                   "+lista_reg.get(i).id_condutor+"                   "+lista_reg.get(i).id_Veiculo+"                   "+lista_reg.get(i).id_util);
+            }
+        } 
+        System.out.print("     \nDigite o numero de registro:");
+        int num=ler.nextInt();
+        
+        Registro r=reg.test_reg(num);
+        
+        if(r!=null){
+            for(int i=0;i<lista_reg.size();i++){
+                if(lista_reg.get(i).getId_Reg()==num){
+                reg.Id_Reg=lista_reg.get(i).Id_Reg;
+                reg.data_entrada=lista_reg.get(i).data_entrada;
+                reg.hora_entrada=lista_reg.get(i).hora_entrada;
+                reg.data_saida=get_Data();
+                reg.hora_saida=get_Hora();
+                reg.id_condutor=lista_reg.get(i).id_condutor;
+                reg.id_Veiculo=lista_reg.get(i).id_Veiculo;
+                reg.id_Veiculo=lista_reg.get(i).id_Veiculo;
+                reg.id_util=lista_reg.get(i).id_util;
+                
+                lista_reg.remove(i);
+                
+                
+                lista_reg.add(i,reg);
+                SalvarFicheiro(lista_reg);
+                System.out.println("\nRegistrado com sucesso!\n");
+                
+                }
+            }
+            
+        }else{
+        System.err.println("     Este registro nao existe!");
+        }
+        
+       
+        
+        
+        
+    }
+    
+    public String get_Data(){
+        DateFormat data_formatada=new SimpleDateFormat("dd/MM/yyyy");
+        Date data=new Date();
+        return data_formatada.format(data);
+    }
+    
+    
+    public String get_Hora(){
+        DateFormat data_formatada=new SimpleDateFormat("HH:MM:SS");
+        Date data=new Date();
+        return data_formatada.format(data);
+    }
+    
     
     
     public void SalvarFicheiro(List<Registro> list_reg) throws IOException{
-        Registro reg=new Registro();
+        
         FileWriter fw =new FileWriter(file);
         BufferedWriter bw=new BufferedWriter(fw);
         
         for(Registro r:list_reg){
             
-            bw.write(reg.Id_Reg+";");
-            bw.write(reg.data_entrada+";");
-            bw.write(reg.hora_entrada+";");
-            bw.write(reg.data_saida+";");
-            bw.write(reg.hora_saida+";");
-            bw.write(reg.id_condutor+";");
-            bw.write(reg.id_Veiculo+";");
-            bw.write(reg.id_util+";\n");
+            bw.write(r.Id_Reg+";");
+            bw.write(r.data_entrada+";");
+            bw.write(r.hora_entrada+";");
+            bw.write(r.data_saida+";");
+            bw.write(r.hora_saida+";");
+            bw.write(r.id_condutor+";");
+            bw.write(r.id_Veiculo+";");
+            bw.write(r.id_util+";\n");
            
         }
         
@@ -156,7 +275,7 @@ public class Registro {
         
         System.out.println("      Id Registro        |Data & Hora Entrada        |Data & Hora Saida        |Id Condutor        |Id Veiculo        |Id Utilizador");
         list_reg.forEach(u->{
-        System.out.println("      "+u.Id_Reg+"                   "+u.data_entrada+" "+u.hora_saida+"       "+u.data_entrada+" "+u.hora_saida+"       "+u.id_condutor+"                   "+u.id_Veiculo+"                  "+u.id_util);
+        System.out.println("      "+u.Id_Reg+"                   "+u.data_entrada+" "+u.hora_entrada+"       "+u.data_saida+" "+u.hora_saida+"       "+u.id_condutor+"                   "+u.id_Veiculo+"                  "+u.id_util);
         });
         
     }
@@ -192,18 +311,19 @@ public class Registro {
        
     }
 
+    }
     
-    
+    public Registro test_reg(int id) throws IOException{
+        List<Registro> lista_reg=LerFicheiro();
+        for(Registro reg:lista_reg){
+            if(reg.Id_Reg==id){
+                return reg;
+            }
+            
+        }
         
+        return null;
     
-        
-    
-    
-    
-
-
-
-   
     }
    
     
